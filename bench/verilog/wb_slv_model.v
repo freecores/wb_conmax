@@ -7,12 +7,13 @@
 ////          rudi@asics.ws                                      ////
 ////                                                             ////
 ////                                                             ////
-////  Downloaded from: http://www.opencores.org/cores/wb_dma/    ////
+////  Downloaded from: http://www.opencores.org/cores/wb_conmax/ ////
 ////                                                             ////
 /////////////////////////////////////////////////////////////////////
 ////                                                             ////
-//// Copyright (C) 2001 Rudolf Usselmann                         ////
-////                    rudi@asics.ws                            ////
+//// Copyright (C) 2000-2002 Rudolf Usselmann                    ////
+////                         www.asics.ws                        ////
+////                         rudi@asics.ws                       ////
 ////                                                             ////
 //// This source file may be used and distributed without        ////
 //// restriction provided that this copyright statement is not   ////
@@ -37,16 +38,19 @@
 
 //  CVS Log
 //
-//  $Id: wb_slv_model.v,v 1.1.1.1 2001-10-19 11:04:25 rudi Exp $
+//  $Id: wb_slv_model.v,v 1.2 2002-10-03 05:40:03 rudi Exp $
 //
-//  $Date: 2001-10-19 11:04:25 $
-//  $Revision: 1.1.1.1 $
+//  $Date: 2002-10-03 05:40:03 $
+//  $Revision: 1.2 $
 //  $Author: rudi $
 //  $Locker:  $
 //  $State: Exp $
 //
 // Change History:
 //               $Log: not supported by cvs2svn $
+//               Revision 1.1.1.1  2001/10/19 11:04:25  rudi
+//               WISHBONE CONMAX IP Core
+//
 //               Revision 1.1  2001/07/29 08:57:02  rudi
 //
 //

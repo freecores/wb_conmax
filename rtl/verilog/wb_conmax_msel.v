@@ -11,8 +11,9 @@
 ////                                                             ////
 /////////////////////////////////////////////////////////////////////
 ////                                                             ////
-//// Copyright (C) 2001 Rudolf Usselmann                         ////
-////                    rudi@asics.ws                            ////
+//// Copyright (C) 2000-2002 Rudolf Usselmann                    ////
+////                         www.asics.ws                        ////
+////                         rudi@asics.ws                       ////
 ////                                                             ////
 //// This source file may be used and distributed without        ////
 //// restriction provided that this copyright statement is not   ////
@@ -37,16 +38,19 @@
 
 //  CVS Log
 //
-//  $Id: wb_conmax_msel.v,v 1.1.1.1 2001-10-19 11:01:38 rudi Exp $
+//  $Id: wb_conmax_msel.v,v 1.2 2002-10-03 05:40:07 rudi Exp $
 //
-//  $Date: 2001-10-19 11:01:38 $
-//  $Revision: 1.1.1.1 $
+//  $Date: 2002-10-03 05:40:07 $
+//  $Revision: 1.2 $
 //  $Author: rudi $
 //  $Locker:  $
 //  $State: Exp $
 //
 // Change History:
 //               $Log: not supported by cvs2svn $
+//               Revision 1.1.1.1  2001/10/19 11:01:38  rudi
+//               WISHBONE CONMAX IP Core
+//
 //
 //
 //

@@ -86,8 +86,8 @@ echo "+++++++++ Setting up IOs ..."                             >> $log_file
 set_driving_cell -cell NAND2D2 -pin Z [all_inputs]              >> $junk_file
 set_load 0.2 [all_outputs]
 
-set_input_delay -max 0 -clock clk_i [all_inputs]
-set_output_delay -max 0 -clock clk_i [all_outputs]
+set_input_delay -max 2 -clock clk_i [all_inputs]
+set_output_delay -max 2 -clock clk_i [all_outputs]
 
 # ==============================================
 # Setup Area Constrains
@@ -104,8 +104,8 @@ set_ultra_optimization -f
 # Compile Design
 
 echo "+++++++++ Starting Compile ..."                           >> $log_file
-#compile -map_effort low -area_effort low                        >> $log_file
-compile -map_effort high -area_effort high -boundary_optimization -auto_ungroup >> $log_file
+compile -map_effort low -area_effort low -auto_ungroup          >> $log_file
+#compile -map_effort high -area_effort high -boundary_optimization -auto_ungroup >> $log_file
 
 # ==============================================
 # Write Out the optimized design

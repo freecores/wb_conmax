@@ -7,12 +7,13 @@
 ////          rudi@asics.ws                                      ////
 ////                                                             ////
 ////                                                             ////
-////  Downloaded from: http://www.opencores.org/cores/wb_ic/     ////
+////  Downloaded from: http://www.opencores.org/cores/wb_conmax/ ////
 ////                                                             ////
 /////////////////////////////////////////////////////////////////////
 ////                                                             ////
-//// Copyright (C) 2001 Rudolf Usselmann                         ////
-////                    rudi@asics.ws                            ////
+//// Copyright (C) 2000-2002 Rudolf Usselmann                    ////
+////                         www.asics.ws                        ////
+////                         rudi@asics.ws                       ////
 ////                                                             ////
 //// This source file may be used and distributed without        ////
 //// restriction provided that this copyright statement is not   ////
@@ -37,16 +38,19 @@
 
 //  CVS Log
 //
-//  $Id: wb_conmax_top.v,v 1.1.1.1 2001-10-19 11:01:38 rudi Exp $
+//  $Id: wb_conmax_top.v,v 1.2 2002-10-03 05:40:07 rudi Exp $
 //
-//  $Date: 2001-10-19 11:01:38 $
-//  $Revision: 1.1.1.1 $
+//  $Date: 2002-10-03 05:40:07 $
+//  $Revision: 1.2 $
 //  $Author: rudi $
 //  $Locker:  $
 //  $State: Exp $
 //
 // Change History:
 //               $Log: not supported by cvs2svn $
+//               Revision 1.1.1.1  2001/10/19 11:01:38  rudi
+//               WISHBONE CONMAX IP Core
+//
 //
 //
 //
@@ -1812,7 +1816,7 @@ initial
 // Master Interfaces
 //
 
-wb_conmax_master_if #(aw,dw,sw)	m0(
+wb_conmax_master_if #(dw,aw,sw)	m0(
 		.clk_i(		clk_i		),
 		.rst_i(		rst_i		),
 		.wb_data_i(	m0_data_i	),
@@ -1987,7 +1991,7 @@ wb_conmax_master_if #(aw,dw,sw)	m0(
 		.s15_rty_i(	m0s15_rty	)
 		);
 
-wb_conmax_master_if #(aw,dw,sw)	m1(
+wb_conmax_master_if #(dw,aw,sw)	m1(
 		.clk_i(		clk_i		),
 		.rst_i(		rst_i		),
 		.wb_data_i(	m1_data_i	),
@@ -2162,7 +2166,7 @@ wb_conmax_master_if #(aw,dw,sw)	m1(
 		.s15_rty_i(	m1s15_rty	)
 		);
 
-wb_conmax_master_if #(aw,dw,sw)	m2(
+wb_conmax_master_if #(dw,aw,sw)	m2(
 		.clk_i(		clk_i		),
 		.rst_i(		rst_i		),
 		.wb_data_i(	m2_data_i	),
@@ -2337,7 +2341,7 @@ wb_conmax_master_if #(aw,dw,sw)	m2(
 		.s15_rty_i(	m2s15_rty	)
 		);
 
-wb_conmax_master_if #(aw,dw,sw)	m3(
+wb_conmax_master_if #(dw,aw,sw)	m3(
 		.clk_i(		clk_i		),
 		.rst_i(		rst_i		),
 		.wb_data_i(	m3_data_i	),
@@ -2512,7 +2516,7 @@ wb_conmax_master_if #(aw,dw,sw)	m3(
 		.s15_rty_i(	m3s15_rty	)
 		);
 
-wb_conmax_master_if #(aw,dw,sw)	m4(
+wb_conmax_master_if #(dw,aw,sw)	m4(
 		.clk_i(		clk_i		),
 		.rst_i(		rst_i		),
 		.wb_data_i(	m4_data_i	),
@@ -2687,7 +2691,7 @@ wb_conmax_master_if #(aw,dw,sw)	m4(
 		.s15_rty_i(	m4s15_rty	)
 		);
 
-wb_conmax_master_if #(aw,dw,sw)	m5(
+wb_conmax_master_if #(dw,aw,sw)	m5(
 		.clk_i(		clk_i		),
 		.rst_i(		rst_i		),
 		.wb_data_i(	m5_data_i	),
@@ -2862,7 +2866,7 @@ wb_conmax_master_if #(aw,dw,sw)	m5(
 		.s15_rty_i(	m5s15_rty	)
 		);
 
-wb_conmax_master_if #(aw,dw,sw)	m6(
+wb_conmax_master_if #(dw,aw,sw)	m6(
 		.clk_i(		clk_i		),
 		.rst_i(		rst_i		),
 		.wb_data_i(	m6_data_i	),
@@ -3037,7 +3041,7 @@ wb_conmax_master_if #(aw,dw,sw)	m6(
 		.s15_rty_i(	m6s15_rty	)
 		);
 
-wb_conmax_master_if #(aw,dw,sw)	m7(
+wb_conmax_master_if #(dw,aw,sw)	m7(
 		.clk_i(		clk_i		),
 		.rst_i(		rst_i		),
 		.wb_data_i(	m7_data_i	),
@@ -4753,7 +4757,7 @@ wb_conmax_slave_if #(pri_sel15,aw,dw,sw) s15(
 		.m7_rty_o(	m7s15_rty	)
 		);
 
-wb_conmax_rf #(rf_addr,aw,dw,sw) rf(
+wb_conmax_rf #(rf_addr,dw,aw,sw) rf(
 		.clk_i(		clk_i		),
 		.rst_i(		rst_i		),
 		.i_wb_data_i(	i_s15_data_o	),

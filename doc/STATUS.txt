@@ -13,6 +13,11 @@ if someone else could verify the core as well.
 STATUS
 ======
 
+Second Release (Oct. 3, 2002)
+-----------------------------
+- Fixed small bug in the core
+- Fixed two typos in the Spec.
+
 Initial Release (10/19/2001)
 ---------------------------
 - No known problems

@@ -11,8 +11,9 @@
 ////                                                             ////
 /////////////////////////////////////////////////////////////////////
 ////                                                             ////
-//// Copyright (C) 2001 Rudolf Usselmann                         ////
-////                    rudi@asics.ws                            ////
+//// Copyright (C) 2000-2002 Rudolf Usselmann                    ////
+////                         www.asics.ws                        ////
+////                         rudi@asics.ws                       ////
 ////                                                             ////
 //// This source file may be used and distributed without        ////
 //// restriction provided that this copyright statement is not   ////
@@ -37,16 +38,19 @@
 
 //  CVS Log
 //
-//  $Id: wb_conmax_master_if.v,v 1.1.1.1 2001-10-19 11:01:41 rudi Exp $
+//  $Id: wb_conmax_master_if.v,v 1.2 2002-10-03 05:40:07 rudi Exp $
 //
-//  $Date: 2001-10-19 11:01:41 $
-//  $Revision: 1.1.1.1 $
+//  $Date: 2002-10-03 05:40:07 $
+//  $Revision: 1.2 $
 //  $Author: rudi $
 //  $Locker:  $
 //  $State: Exp $
 //
 // Change History:
 //               $Log: not supported by cvs2svn $
+//               Revision 1.1.1.1  2001/10/19 11:01:41  rudi
+//               WISHBONE CONMAX IP Core
+//
 //
 //
 //
@@ -358,6 +362,16 @@ reg			wb_err_o;
 reg			wb_rty_o;
 wire	[3:0]		slv_sel;
 
+wire		s0_cyc_o_next, s1_cyc_o_next, s2_cyc_o_next, s3_cyc_o_next;
+wire		s4_cyc_o_next, s5_cyc_o_next, s6_cyc_o_next, s7_cyc_o_next;
+wire		s8_cyc_o_next, s9_cyc_o_next, s10_cyc_o_next, s11_cyc_o_next;
+wire		s12_cyc_o_next, s13_cyc_o_next, s14_cyc_o_next, s15_cyc_o_next;
+
+reg		s0_cyc_o, s1_cyc_o, s2_cyc_o, s3_cyc_o;
+reg		s4_cyc_o, s5_cyc_o, s6_cyc_o, s7_cyc_o;
+reg		s8_cyc_o, s9_cyc_o, s10_cyc_o, s11_cyc_o;
+reg		s12_cyc_o, s13_cyc_o, s14_cyc_o, s15_cyc_o;
+
 ////////////////////////////////////////////////////////////////////
 //
 // Select logic
@@ -467,22 +481,86 @@ assign s13_we_o = wb_we_i;
 assign s14_we_o = wb_we_i;
 assign s15_we_o = wb_we_i;
 
-assign s0_cyc_o = (wb_cyc_i & !wb_stb_i) ? s0_cyc_o : ((slv_sel==4'd0) ? wb_cyc_i : 1'b0);
-assign s1_cyc_o = (wb_cyc_i & !wb_stb_i) ? s1_cyc_o : ((slv_sel==4'd1) ? wb_cyc_i : 1'b0);
-assign s2_cyc_o = (wb_cyc_i & !wb_stb_i) ? s2_cyc_o : ((slv_sel==4'd2) ? wb_cyc_i : 1'b0);
-assign s3_cyc_o = (wb_cyc_i & !wb_stb_i) ? s3_cyc_o : ((slv_sel==4'd3) ? wb_cyc_i : 1'b0);
-assign s4_cyc_o = (wb_cyc_i & !wb_stb_i) ? s4_cyc_o : ((slv_sel==4'd4) ? wb_cyc_i : 1'b0);
-assign s5_cyc_o = (wb_cyc_i & !wb_stb_i) ? s5_cyc_o : ((slv_sel==4'd5) ? wb_cyc_i : 1'b0);
-assign s6_cyc_o = (wb_cyc_i & !wb_stb_i) ? s6_cyc_o : ((slv_sel==4'd6) ? wb_cyc_i : 1'b0);
-assign s7_cyc_o = (wb_cyc_i & !wb_stb_i) ? s7_cyc_o : ((slv_sel==4'd7) ? wb_cyc_i : 1'b0);
-assign s8_cyc_o = (wb_cyc_i & !wb_stb_i) ? s8_cyc_o : ((slv_sel==4'd8) ? wb_cyc_i : 1'b0);
-assign s9_cyc_o = (wb_cyc_i & !wb_stb_i) ? s9_cyc_o : ((slv_sel==4'd9) ? wb_cyc_i : 1'b0);
-assign s10_cyc_o = (wb_cyc_i & !wb_stb_i) ? s10_cyc_o : ((slv_sel==4'd10) ? wb_cyc_i : 1'b0);
-assign s11_cyc_o = (wb_cyc_i & !wb_stb_i) ? s11_cyc_o : ((slv_sel==4'd11) ? wb_cyc_i : 1'b0);
-assign s12_cyc_o = (wb_cyc_i & !wb_stb_i) ? s12_cyc_o : ((slv_sel==4'd12) ? wb_cyc_i : 1'b0);
-assign s13_cyc_o = (wb_cyc_i & !wb_stb_i) ? s13_cyc_o : ((slv_sel==4'd13) ? wb_cyc_i : 1'b0);
-assign s14_cyc_o = (wb_cyc_i & !wb_stb_i) ? s14_cyc_o : ((slv_sel==4'd14) ? wb_cyc_i : 1'b0);
-assign s15_cyc_o = (wb_cyc_i & !wb_stb_i) ? s15_cyc_o : ((slv_sel==4'd15) ? wb_cyc_i : 1'b0);
+assign s0_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s0_cyc_o : ((slv_sel==4'd0) ? wb_cyc_i : 1'b0);
+assign s1_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s1_cyc_o : ((slv_sel==4'd1) ? wb_cyc_i : 1'b0);
+assign s2_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s2_cyc_o : ((slv_sel==4'd2) ? wb_cyc_i : 1'b0);
+assign s3_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s3_cyc_o : ((slv_sel==4'd3) ? wb_cyc_i : 1'b0);
+assign s4_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s4_cyc_o : ((slv_sel==4'd4) ? wb_cyc_i : 1'b0);
+assign s5_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s5_cyc_o : ((slv_sel==4'd5) ? wb_cyc_i : 1'b0);
+assign s6_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s6_cyc_o : ((slv_sel==4'd6) ? wb_cyc_i : 1'b0);
+assign s7_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s7_cyc_o : ((slv_sel==4'd7) ? wb_cyc_i : 1'b0);
+assign s8_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s8_cyc_o : ((slv_sel==4'd8) ? wb_cyc_i : 1'b0);
+assign s9_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s9_cyc_o : ((slv_sel==4'd9) ? wb_cyc_i : 1'b0);
+assign s10_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s10_cyc_o : ((slv_sel==4'd10) ? wb_cyc_i : 1'b0);
+assign s11_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s11_cyc_o : ((slv_sel==4'd11) ? wb_cyc_i : 1'b0);
+assign s12_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s12_cyc_o : ((slv_sel==4'd12) ? wb_cyc_i : 1'b0);
+assign s13_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s13_cyc_o : ((slv_sel==4'd13) ? wb_cyc_i : 1'b0);
+assign s14_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s14_cyc_o : ((slv_sel==4'd14) ? wb_cyc_i : 1'b0);
+assign s15_cyc_o_next = (wb_cyc_i & !wb_stb_i) ? s15_cyc_o : ((slv_sel==4'd15) ? wb_cyc_i : 1'b0);
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s0_cyc_o <= #1 1'b0; 
+	else		s0_cyc_o <= #1 s0_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s1_cyc_o <= #1 1'b0; 
+	else		s1_cyc_o <= #1 s1_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s2_cyc_o <= #1 1'b0; 
+	else		s2_cyc_o <= #1 s2_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s3_cyc_o <= #1 1'b0; 
+	else		s3_cyc_o <= #1 s3_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s4_cyc_o <= #1 1'b0; 
+	else		s4_cyc_o <= #1 s4_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s5_cyc_o <= #1 1'b0; 
+	else		s5_cyc_o <= #1 s5_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s6_cyc_o <= #1 1'b0; 
+	else		s6_cyc_o <= #1 s6_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s7_cyc_o <= #1 1'b0; 
+	else		s7_cyc_o <= #1 s7_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s8_cyc_o <= #1 1'b0; 
+	else		s8_cyc_o <= #1 s8_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s9_cyc_o <= #1 1'b0; 
+	else		s9_cyc_o <= #1 s9_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s10_cyc_o <= #1 1'b0; 
+	else		s10_cyc_o <= #1 s10_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s11_cyc_o <= #1 1'b0; 
+	else		s11_cyc_o <= #1 s11_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s12_cyc_o <= #1 1'b0; 
+	else		s12_cyc_o <= #1 s12_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s13_cyc_o <= #1 1'b0; 
+	else		s13_cyc_o <= #1 s13_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s14_cyc_o <= #1 1'b0; 
+	else		s14_cyc_o <= #1 s14_cyc_o_next; 
+
+always @(posedge clk_i or posedge rst_i) 
+	if(rst_i)	s15_cyc_o <= #1 1'b0; 
+	else		s15_cyc_o <= #1 s15_cyc_o_next; 
 
 assign s0_stb_o = (slv_sel==4'd0) ? wb_stb_i : 1'b0;
 assign s1_stb_o = (slv_sel==4'd1) ? wb_stb_i : 1'b0;
